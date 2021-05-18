@@ -1,0 +1,21 @@
+{% extends "basic_app/basic_app_base.html" %}
+
+{% block body_block %} 
+
+<div class="p-5 mb-4 bg-light rounded-3">
+    <h1>{{ page_title }}</h1>
+
+    <h2>Detail Sekolah:</h2>
+    <p>Nama Sekolah : {{ detail_sekolah.nama}}</p>
+    <p>Kepala Sekolah : {{ detail_sekolah.kepsek}}</p>
+    <p>Lokasi : {{ detail_sekolah.lokasi}}</p>
+
+    <h2>Murid</h2>
+    {% for murid in detail_sekolah.siswa.all %}
+        <p>{{murid.nama}} Umur {{murid.umur}}</p>
+    {% endfor %}
+
+</div>
+
+
+{% endblock %}

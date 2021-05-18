@@ -1,0 +1,19 @@
+{% extends "basic_app/basic_app_base.html" %}
+
+{% block body_block %} 
+
+<div class="p-5 mb-4 bg-light rounded-3">
+    <h1>{{ page_title }}</h1>
+
+    <ol>
+        {% for sekolah in daftar_sekolah %}
+        <h2>
+            <li><a href="{% url 'basic_app:sekolahdetail' sekolah.id %}">{{ sekolah.nama}}</a></li>
+        </h2>
+        {% endfor %}
+    </ol>
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "basic_app/basic_app_base.html" %}
+
+{% block body_block %} 
+
+<div class="p-5 mb-4 bg-light rounded-3">
+    <h1>{{ page_title }}</h1>
+
+    {# kalau belum ada PK atau ada data berarti buat baru #}
+    {% if not form.instance.pk %}
+        <h2>Buat Data Baru</h2>
+    {% else %}
+        <h2>Update Data</h2>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-primary btn-lg">Simpan Data</button>
+
+    </form>
+
+</div>
+
+
+{% endblock %}

@@ -18,4 +18,9 @@
 </div>
 
 
+<div class="container">
+    <p><a class="btn btn-outline-success" href="{% url 'basic_app:update' pk=detail_sekolah.pk %}">Update</a></p>
+    <p><a class="btn btn-outline-danger" href="{% url 'basic_app:hapus' pk=detail_sekolah.pk %}">Hapus</a></p>
+</div>
+
 {% endblock %}

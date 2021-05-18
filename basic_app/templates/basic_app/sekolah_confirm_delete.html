@@ -1,0 +1,19 @@
+{% extends "basic_app/basic_app_base.html" %}
+
+{% block body_block %} 
+
+<div class="p-5 mb-4 bg-light rounded-3">
+    <h1>{{ page_title }} {{sekolah.nama}} ?</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <button type="submit" class="btn btn-danger btn-lg">Hapus Data</button>
+        <a href="{% url 'basic_app:sekolahdetail' sekolah.id %}" class="btn btn-info btn-lg">Batal</a>
+
+    </form>
+
+</div>
+
+
+{% endblock %}

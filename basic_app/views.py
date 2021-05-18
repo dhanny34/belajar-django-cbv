@@ -1,7 +1,10 @@
 from django.shortcuts import render
-from django.views.generic import View, TemplateView, ListView, DetailView
+from django.views.generic import (View, 
+                                    TemplateView, ListView, DetailView,
+                                    CreateView, UpdateView, DeleteView)
 from django.http import HttpResponse
 from .models import Sekolah, Murid
+from django.urls import reverse_lazy
 
 
 # Create your views here.
@@ -24,7 +27,7 @@ class IndexCBVView(TemplateView):
         return context
 
 
-class SekolahList(ListView):
+class SekolahListView(ListView):
     model = Sekolah
     context_object_name = 'daftar_sekolah'
 
@@ -34,7 +37,7 @@ class SekolahList(ListView):
         return context
 
 
-class SekolahDetail(DetailView):
+class SekolahDetailView(DetailView):
     model = Sekolah
     context_object_name = 'detail_sekolah'
     template_name = 'basic_app/sekolah_detail.html'
@@ -42,4 +45,35 @@ class SekolahDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page_title'] = 'Selamat datang di Halaman Detail Sekolah'
+        return context
+
+
+class SekolahCreateView(CreateView):
+    fields = ('nama', 'kepsek', 'lokasi')
+    model = Sekolah
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = 'Form Data Sekolah'
+        return context
+
+
+class SekolahUpdateView(UpdateView):
+    fields = ('nama', 'kepsek')
+    model = Sekolah
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = 'Form Data Sekolah'
+        return context
+
+
+class SekolahHapusView(DeleteView):
+    model = Sekolah
+
+    success_url = reverse_lazy('basic_app:list')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = 'Hapus Sekolah'
         return context

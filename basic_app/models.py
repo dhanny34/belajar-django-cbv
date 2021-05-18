@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+
 
 # Create your models here.
 class Sekolah(models.Model):
@@ -8,6 +10,11 @@ class Sekolah(models.Model):
 
     def __str__(self):
         return self.nama
+
+    # url setelah selesai post akan redirect kemana
+    def get_absolute_url(self):
+        return reverse('basic_app:sekolahdetail', kwargs={'pk': self.pk})
+
 
 
 class Murid(models.Model):
